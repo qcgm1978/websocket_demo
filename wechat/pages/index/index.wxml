@@ -1,6 +1,9 @@
 <view class="container">
-  <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
-  <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+  <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
+  <block wx:else>
+    <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
+    <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+  </block>
 
   <scroll-view class='log-box' scroll-y="true" scroll-top="{{scrollTop}}">
     <view class="msg {{item.style}}" wx:for="{{msgs}}" id="{{vid}}">{{item.msg_txt}}</view>
